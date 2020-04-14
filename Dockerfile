@@ -1,7 +1,5 @@
 FROM node:10-alpine
 
-USER root
-
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
@@ -14,7 +12,11 @@ RUN npm install
 
 COPY . .
 
+USER root
+
 RUN chown -R node:node .
+
+USER node
 
 EXPOSE 8080
 
